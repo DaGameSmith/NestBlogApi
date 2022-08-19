@@ -1,0 +1,48 @@
+scalar DateTime
+
+type Post {
+  id: Int
+  createdAt: DateTime
+  title: String!
+  desc: String!
+  author: NestedUser
+  categories: [NestedCategory]
+}
+
+type NestedPost{
+  id: Int
+  createdAt: DateTime
+  title: String!
+  desc: String!
+}
+
+input PostInput {
+  title: String!
+  desc: String!
+  author: UserInput!
+}
+
+input CreatePostInput {
+  title: String!
+  desc: String!
+  authorId: Int!
+  categories: [CategoryInput]
+}
+
+input UpdatePostInput {
+  id: Int!
+  title: String
+  desc: String
+  categories: [CategoryInput]
+}
+
+type Query {
+  posts: [Post]
+  post(id: Int!): Post
+}
+
+type Mutation {
+  createPost(createPostInput: CreatePostInput!): Post!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+  removePost(id: Int!): Post
+}

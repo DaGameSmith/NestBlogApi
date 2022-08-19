@@ -1,0 +1,42 @@
+
+type User {
+  id: Int!
+  email: String!
+  username: String!
+  posts: [NestedPost]
+}
+
+type NestedUser{
+  id: Int!
+  email: String!
+  username: String!
+  
+}
+
+input UserInput {
+  id: Int!
+  email: String!
+  username: String!
+}
+
+input CreateUserInput {
+  email: String!
+  username: String!
+}
+
+input UpdateUserInput {
+  id: Int!
+  username: String!
+  # email: String!
+}
+
+type Query {
+  users: [User]
+  user(id: Int!): User
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User
+}

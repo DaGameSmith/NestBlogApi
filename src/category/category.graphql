@@ -1,0 +1,36 @@
+
+type Category {
+  id: Int
+  name: String!
+  posts: [NestedPost]
+}
+
+type NestedCategory{
+  id: Int
+  name: String!
+}
+
+input CategoryInput {
+  name: String!
+}
+
+input CreateCategoryInput {
+  name: String!
+}
+
+# input UpdateCategoryInput {
+#   id: Int!
+#   name: String
+#   posts: [PostInput]
+# }
+
+type Query {
+  categories: [Category]
+  category(id: Int!): Category
+}
+
+type Mutation {
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  # updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  # removeCategory(id: Int!): Category
+}
